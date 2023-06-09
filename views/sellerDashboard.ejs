@@ -10,7 +10,39 @@
     <p>
         Welcome to ProfilePage
     </p>    
-    <span><%= user%></span>
-    <span><%= email%></span>
+    <span><h4>Seller Name : <%= user%></h4></span>
+    <span>Seller email: <%= email%></span>
+    <span><%= id%></span><p></p>
+    <span>Seller URL <a href="/seller/<%=id %>">/seller/<%=id %></a></span>
+
+    <p>Add Category</p>
+    <form action="seller/add-category/<%=id%>" method="post">
+        <input type="'text" placeholder="enter caterory" name="category"/>
+        <button>Add Category</button>
+    </form>
+
+    <p>Add Subcategory</p>
+    <form action="seller/add-sub-category" method="post">
+        <!-- use select and options to display category -->
+        <select name="Select Category">
+            <!-- <%  %> -->
+            <option>Select Category</option>
+            <option>1</option>
+            <option>2</option>
+        </select>
+        <input type="'text" placeholder="enter sub-category" name="subCategory"/>
+        <button>Add Sub-Category</button>
+    </form>
+
+    <p>Add Inventory</p>
+    <form action="/add-product/<%=id%>" method="post" >
+        <input type="text" placeholder="Category" name="category"/>
+        <input type="text" placeholder="sub-category" name="subCategory"/>
+        <input type="text" placeholder="product name" name="product"/>
+        <input type="text" placeholder="MRP" name="price"/>
+        <input type="text" placeholder="SP" name="salePrice"/>
+        <input type="text" placeholder="QTY" name="quantity"/>
+        <button>Add Inventory</button>
+    </form>
 </body>
 </html>

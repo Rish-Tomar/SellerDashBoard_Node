@@ -25,7 +25,8 @@ const loginUser=async (req,res)=>{
         return res.render('sellerDashBoard',{
             title:"Seller Dashboard",
             user:userExist.businessName,
-            email:userExist.email
+            email:userExist.email,
+            id:userExist._id
         })
     }
     console.log('No such User Exists')
@@ -47,15 +48,29 @@ const signup=async(req,res)=>{
         const createUser=await Seller.create({
             email:req.body.email,
             password:req.body.password,
-            businessName:req.body.businessName
+            businessName:req.body.businessName,
         })
 
         if(createUser){
             console.log("User is created")
-            return res.redirect('back')
+            return res.redirect('/login')
         }
     }
     return res.redirect('back')
 }
 
-export {home,register,signup,login,loginUser}
+const sellerURl =async (req,res)=>{
+    console.log('seller id is',req.params)
+    const seller=await Seller.findById(req.params.id)
+    if(seller){
+        return res.render('userHome',{
+            title:'Customer',
+            seller:seller.businessName
+        })
+    }
+    return res.render('userHome',{
+
+    })
+}
+
+export {home,register,signup,login,loginUser,sellerURl}
